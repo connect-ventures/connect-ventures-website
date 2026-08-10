@@ -18,7 +18,7 @@ You are editing the Connect Ventures production marketing site.
 5. Preview at desktop and mobile widths.
 6. Run `node scripts/check-site.mjs` before committing.
 7. Commit with a plain-language message, push the branch, and open a pull request.
-8. Share the generated preview URL. Do not merge or publish until the user approves the preview.
+8. Share the local preview or screenshots. Do not merge or publish until the user approves the change.
 
 ## Guardrails
 
@@ -33,4 +33,4 @@ You are editing the Connect Ventures production marketing site.
 
 ## Rollback
 
-If an approved change causes a problem, revert the pull request or restore the previous production deploy in Netlify. Do not patch production directly outside version control.
+If an approved change causes a problem, revert the pull request or revert the production commit in GitHub. Do not patch production directly outside version control.

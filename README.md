@@ -26,14 +26,14 @@ The check verifies local asset references, SEO metadata, external-link safety, a
 2. Make and preview the change locally.
 3. Run `node scripts/check-site.mjs`.
 4. Push the branch and open a pull request.
-5. Review the Netlify preview URL added to the pull request.
-6. Merge the pull request only after the preview is approved. Merging to `main` publishes production automatically.
+5. Review the change locally at desktop and mobile widths.
+6. Merge the pull request only after the change is approved. Merging to `main` publishes production automatically through GitHub Pages.
 
-The GitHub Actions workflow requires two repository secrets, `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID`, plus a repository variable named `NETLIFY_DEPLOY_ENABLED` set to `true`. Until that variable is enabled, validation runs but deployment stays safely off.
+Pull requests run validation without publishing. GitHub Pages does not provide a shareable pull-request preview by default, so changes should be reviewed locally before merging.
 
 ## Hosting decision
 
-The recommended initial host is Netlify, deployed through GitHub Actions rather than Netlify's direct repository integration. This keeps the GitHub organization repository private without requiring Netlify Pro, preserves the current UltraDNS nameservers, and supports previews plus one-click rollback. Hosting can be changed later without changing the editing workflow.
+The site is hosted with GitHub Pages and deployed by GitHub Actions. The repository is public while the Connect Ventures organization is on GitHub Free; it can be made private after upgrading the organization to GitHub Team. The current UltraDNS nameservers can remain in place when the custom domain is connected.
 
 ## Project structure
 
@@ -43,4 +43,3 @@ The recommended initial host is Netlify, deployed through GitHub Actions rather 
 - `CLAUDE.md` — instructions Claude Code should follow
 - `LAUNCH-CHECKLIST.md` — account, content, and DNS tasks before cutover
 - `.github/workflows/site.yml` — validation, preview, and production deploys
-- `_headers` — baseline security headers applied by Netlify

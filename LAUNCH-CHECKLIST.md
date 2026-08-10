@@ -11,25 +11,23 @@
 
 ## Ownership and accounts
 
-- [ ] Create the Connect Ventures GitHub organization.
-- [ ] Create a private `connect-ventures-website` repository.
-- [ ] Invite Alexa as an organization Owner; never request or share her password.
-- [ ] Create or confirm a client-owned Netlify account/site.
-- [ ] Add `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` as GitHub Actions repository secrets.
-- [ ] Set the GitHub Actions repository variable `NETLIFY_DEPLOY_ENABLED` to `true` only after the Netlify secrets are configured.
+- [x] Create the Connect Ventures GitHub organization.
+- [x] Create the `connect-ventures-website` repository.
+- [x] Confirm Alexa and Josh are organization Owners; never request or share passwords.
+- [ ] Keep the repository public while using GitHub Pages on GitHub Free, or upgrade to GitHub Team before making it private.
 
 ## Preview and approval
 
 - [ ] Push the initial branch and confirm the automated checks pass.
-- [ ] Confirm the pull-request preview works on desktop and mobile.
+- [ ] Confirm the local preview works on desktop and mobile.
 - [ ] Test portfolio links, social links, Beehiiv subscription, and the newsletter feed.
 - [ ] Get written approval for the production version.
 
 ## DNS cutover
 
 - [ ] Export/back up every existing DNS record before making changes, especially mail records.
-- [ ] Add both `connectventures.com` and `www.connectventures.com` to the Netlify site.
-- [ ] Confirm SSL is provisioned before changing the primary URL.
+- [ ] Add and verify the custom domain in GitHub Pages.
+- [ ] Confirm GitHub Pages provisions HTTPS before changing the primary URL.
 - [ ] Update only the required web records in UltraDNS.
 - [ ] Verify apex-to-`www` redirect, HTTPS, and both hostnames after propagation.
 - [ ] Keep the current Webflow site available until the new site is verified.
@@ -42,6 +40,6 @@ Current read-only DNS snapshot (August 9, 2026):
 
 ## Handoff
 
-- [ ] Train Alexa on branching, prompting Claude, previewing, approving, merging, and rollback.
-- [ ] Confirm Alexa can access GitHub, Netlify, and the domain/DNS account without shared credentials.
-- [ ] Document who owns billing and renewal notifications for hosting and the domain.
+- [ ] Train Alexa on branching, prompting Claude, local previewing, approving, merging, and rollback.
+- [ ] Confirm Alexa can access GitHub and the domain/DNS account without shared credentials.
+- [ ] Document who owns billing and renewal notifications for the domain and any future paid GitHub plan.
