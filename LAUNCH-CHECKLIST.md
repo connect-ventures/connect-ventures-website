@@ -26,9 +26,15 @@
 ## DNS cutover
 
 - [ ] Export/back up every existing DNS record before making changes, especially mail records.
-- [ ] Add and verify the custom domain in GitHub Pages.
-- [ ] Confirm GitHub Pages provisions HTTPS before changing the primary URL.
-- [ ] Update only the required web records in UltraDNS.
+- [ ] In GitHub Pages, set the custom domain to `www.connectventures.com` immediately before updating DNS.
+- [ ] In UltraDNS, replace the existing `www` CNAME (`cdn.webflow.com`) with `connect-ventures.github.io`.
+- [ ] In UltraDNS, replace the existing apex A record (`198.202.211.1`) with all four GitHub Pages A records:
+  - `185.199.108.153`
+  - `185.199.109.153`
+  - `185.199.110.153`
+  - `185.199.111.153`
+- [ ] Leave nameservers, MX, TXT, and every other non-web DNS record unchanged.
+- [ ] Wait for GitHub's DNS check and TLS certificate, then enable **Enforce HTTPS**.
 - [ ] Verify apex-to-`www` redirect, HTTPS, and both hostnames after propagation.
 - [ ] Keep the current Webflow site available until the new site is verified.
 
