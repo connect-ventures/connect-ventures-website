@@ -16,6 +16,7 @@
 - [ ] Invite Alexa as an organization Owner; never request or share her password.
 - [ ] Create or confirm a client-owned Netlify account/site.
 - [ ] Add `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` as GitHub Actions repository secrets.
+- [ ] Set the GitHub Actions repository variable `NETLIFY_DEPLOY_ENABLED` to `true` only after the Netlify secrets are configured.
 
 ## Preview and approval
 

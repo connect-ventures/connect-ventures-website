@@ -29,7 +29,7 @@ The check verifies local asset references, SEO metadata, external-link safety, a
 5. Review the Netlify preview URL added to the pull request.
 6. Merge the pull request only after the preview is approved. Merging to `main` publishes production automatically.
 
-The GitHub Actions workflow requires two repository secrets: `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID`.
+The GitHub Actions workflow requires two repository secrets, `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID`, plus a repository variable named `NETLIFY_DEPLOY_ENABLED` set to `true`. Until that variable is enabled, validation runs but deployment stays safely off.
 
 ## Hosting decision
 
