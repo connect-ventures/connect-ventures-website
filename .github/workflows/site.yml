@@ -8,7 +8,12 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   validate:
@@ -22,37 +27,21 @@ jobs:
       - name: Check site files
         run: node scripts/check-site.mjs
 
-  preview:
-    if: github.event_name == 'pull_request' && vars.NETLIFY_DEPLOY_ENABLED == 'true'
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: validate
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
-      - name: Deploy preview
-        id: deploy
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: |
-          npx --yes netlify-cli@latest deploy --dir=. --json > "$RUNNER_TEMP/netlify-deploy.json"
-          PREVIEW_URL=$(node -e "const d=require(process.argv[1]); process.stdout.write(d.deploy_url || d.deploy_ssl_url || d.url)" "$RUNNER_TEMP/netlify-deploy.json")
-          echo "preview_url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
-      - name: Add preview to pull request
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PREVIEW_URL: ${{ steps.deploy.outputs.preview_url }}
-        run: |
-          gh pr comment "${{ github.event.pull_request.number }}" --body "Connect Ventures preview: $PREVIEW_URL"
-
-  production:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.NETLIFY_DEPLOY_ENABLED == 'true'
-    needs: validate
-    runs-on: ubuntu-latest
-    environment: production
-    steps:
-      - uses: actions/checkout@v6
-      - name: Deploy production
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: npx --yes netlify-cli@latest deploy --dir=. --prod
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
