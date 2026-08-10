@@ -14,6 +14,9 @@
 - [x] Create the Connect Ventures GitHub organization.
 - [x] Create the `connect-ventures-website` repository.
 - [x] Confirm Alexa and Josh are organization Owners; never request or share passwords.
+- [x] Install the official Claude GitHub App for the organization with write access to `connect-ventures-website`.
+- [x] Prove the Claude cloud workflow can create a branch, open a pull request, merge after approval, and trigger a successful GitHub Pages deployment.
+- [ ] Connect Alexa's own Claude and GitHub accounts to the repository during training; do not share Josh's authorization.
 - [ ] Keep the repository public while using GitHub Pages on GitHub Free, or upgrade to GitHub Team before making it private.
 
 ## Preview and approval
@@ -46,6 +49,7 @@ Current read-only DNS snapshot (August 9, 2026):
 
 ## Handoff
 
-- [ ] Train Alexa on branching, prompting Claude, local previewing, approving, merging, and rollback.
+- [x] Add `ALEXA-GUIDE.md` with the tested no-Terminal request, screenshot, approval, pull-request, merge, deployment, and rollback workflow.
+- [ ] Train Alexa on prompting Claude, reviewing desktop/mobile screenshots, approving a pull request, merging, checking the live page, and rollback. Manual branch naming and Terminal usage are not required.
 - [ ] Confirm Alexa can access GitHub and the domain/DNS account without shared credentials.
 - [ ] Document who owns billing and renewal notifications for the domain and any future paid GitHub plan.
