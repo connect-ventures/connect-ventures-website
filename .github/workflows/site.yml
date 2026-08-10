@@ -40,7 +40,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           PREVIEW_URL: ${{ steps.deploy.outputs.preview_url }}
-        run: gh pr comment "${{ github.event.pull_request.number }}" --body "Connect Ventures preview: $PREVIEW_URL"
+        run: |
+          gh pr comment "${{ github.event.pull_request.number }}" --body "Connect Ventures preview: $PREVIEW_URL"
 
   production:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.NETLIFY_DEPLOY_ENABLED == 'true'
