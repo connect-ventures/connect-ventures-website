@@ -22,22 +22,26 @@ if (/cdn\.tailwindcss\.com/i.test(html)) {
   failures.push('The unused Tailwind CDN runtime was reintroduced.');
 }
 
-const blankLinks = html.match(/<a\b[^>]*target="_blank"[^>]*>/gi) ?? [];
-for (const tag of blankLinks) {
-  if (!/rel="[^"]*noopener[^"]*noreferrer[^"]*"/i.test(tag)) {
-    failures.push(`External link is missing rel="noopener noreferrer": ${tag}`);
+const pageNames = ['index.html', 'terms.html', 'privacy.html'].filter(name => existsSync(join(root, name)));
+for (const pageName of pageNames) {
+  const pageHtml = readFileSync(join(root, pageName), 'utf8');
+  const blankLinks = pageHtml.match(/<a\b[^>]*target="_blank"[^>]*>/gi) ?? [];
+  for (const tag of blankLinks) {
+    if (!/rel="[^"]*noopener[^"]*noreferrer[^"]*"/i.test(tag)) {
+      failures.push(`${pageName}: external link is missing rel="noopener noreferrer": ${tag}`);
+    }
   }
-}
 
-const refs = new Set();
-for (const match of html.matchAll(/\b(?:src|href)=["']([^"']+)["']/gi)) refs.add(match[1]);
-for (const match of html.matchAll(/background-image:\s*url\(["']?([^"')]+)["']?\)/gi)) refs.add(match[1]);
+  const refs = new Set();
+  for (const match of pageHtml.matchAll(/\b(?:src|href)=["']([^"']+)["']/gi)) refs.add(match[1]);
+  for (const match of pageHtml.matchAll(/background-image:\s*url\(["']?([^"')]+)["']?\)/gi)) refs.add(match[1]);
 
-for (const ref of refs) {
-  if (/^(?:https?:|mailto:|tel:|data:|#)/i.test(ref)) continue;
-  const relative = decodeURIComponent(ref.split(/[?#]/, 1)[0]).replace(/^\//, '');
-  if (relative && !existsSync(join(root, relative))) {
-    failures.push(`Missing local asset: ${ref}`);
+  for (const ref of refs) {
+    if (/^(?:https?:|mailto:|tel:|data:|#)/i.test(ref)) continue;
+    const relative = decodeURIComponent(ref.split(/[?#]/, 1)[0]).replace(/^\//, '');
+    if (relative && !existsSync(join(root, relative))) {
+      failures.push(`${pageName}: missing local asset: ${ref}`);
+    }
   }
 }
 
@@ -47,7 +51,7 @@ if (/TERMS &amp; CONDITIONS<\/a>/i.test(html) && /href="#"[^>]*>TERMS &amp; COND
 if (/PRIVACY POLICY<\/a>/i.test(html) && /href="#"[^>]*>PRIVACY POLICY/i.test(html)) {
   warnings.push('Privacy Policy still needs an approved destination.');
 }
-if (/backing and amplify/i.test(html)) warnings.push('Hero copy still contains “backing and amplify.”');
+if (/backing and amplify(?:\s|<)/i.test(html)) warnings.push('Hero copy still contains “backing and amplify.”');
 if (/co-lead the Consumer team and investing/i.test(html)) warnings.push('Nicole bio still contains “co-lead … and investing.”');
 
 for (const warning of warnings) console.warn(`WARNING: ${warning}`);
