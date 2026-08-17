@@ -12,17 +12,17 @@ You are editing the Connect Ventures production marketing site. The primary user
 ## Required workflow
 
 1. Confirm the requested outcome and inspect the relevant existing section.
-2. Work on the branch assigned to the current Claude cloud session. Do not stop merely because its generated `claude/...` name differs from a name suggested by the user.
+2. Use a fresh Claude Code task for each unrelated request, so each change gets its own session branch. Work on the branch assigned to the current Claude cloud session; do not stop merely because its generated `claude/...` name differs from a name suggested by the user.
 3. Make the smallest change that satisfies the request.
 4. Preserve the existing typography, color palette, spacing language, and responsive behavior unless the request is specifically a redesign.
 5. Run `node scripts/check-site.mjs`.
-6. Generate and show screenshots at desktop and mobile widths whenever the change affects visible content or layout.
-7. Explain exactly what changed and wait for explicit approval before committing, pushing, opening a pull request, merging, or publishing.
-8. After approval, commit with a plain-language message, push the session branch, and open a pull request against `main`.
-9. Do not merge the pull request until the user explicitly approves the merge.
-10. After an approved merge, confirm the GitHub Pages workflow succeeds and provide the live URL. If the cloud environment cannot load `github.io`, say so and ask the user to perform the final visual check; a successful workflow run is not a substitute for that check.
+6. For text-only edits that do not change markup, styles, or layout, show the diff instead of generating screenshots. For layout, styling, image, or structural changes, generate and show desktop and mobile screenshots.
+7. Explain exactly what changed and wait for explicit approval before making the edit live in any way.
+8. After completing an approved edit, you may commit it, push the session branch, and open a pull request against `main` without requesting additional approval for those steps.
+9. Never merge or publish without separate, explicit user approval of the merge itself.
+10. After an approved merge, check the GitHub Pages deployment workflow once — do not repeatedly poll GitHub Actions. If it succeeded, report the merge, provide the live URL, and ask the user to verify the live page. If the cloud environment cannot load `github.io`, say so and ask the user to perform the final visual check; a successful workflow run is not a substitute for that check.
 
-GitHub Pages does not provide a shareable preview URL for each pull request in this repository. Before merging, use screenshots as the review artifact.
+GitHub Pages does not provide a shareable preview URL for each pull request in this repository. Use a diff for text-only changes and screenshots for visual changes as the review artifact before merging.
 
 ## Known validation warnings
 
