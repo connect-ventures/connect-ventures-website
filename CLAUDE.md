@@ -9,6 +9,18 @@ You are editing the Connect Ventures production marketing site. The primary user
 - Production images and logos are in `assets/`.
 - Do not introduce a framework, package manager, database, server, or new third-party service unless the user explicitly asks for one and approves the added complexity.
 
+## Production state
+
+- The public production URL is <https://connectventures.com/>.
+- The DNS cutover from Webflow was completed on August 17, 2026.
+- GitHub Pages is configured with the custom domain `connectventures.com`, and its TLS certificate is active.
+- Merging an approved pull request into `main` deploys directly to the public production site through GitHub Actions. It is not a staging-only merge.
+- The default `https://connect-ventures.github.io/connect-ventures-website/` address is the underlying GitHub Pages URL for the same deployment, not an independent staging environment.
+- Pull requests do not receive public preview URLs in this repository. Before a merge, use a diff for text-only changes and screenshots for visual changes.
+- Treat this section as authoritative. Do not infer current hosting or DNS state from completed historical checklist items. If asked about current deployment behavior, inspect the current repository and Pages configuration.
+
+Do not tell the user that DNS cutover is pending, that Webflow still serves the public domain, or that merging only updates staging. Those statements are obsolete.
+
 ## Required workflow
 
 1. Confirm the requested outcome and inspect the relevant existing section.
@@ -20,13 +32,7 @@ You are editing the Connect Ventures production marketing site. The primary user
 7. Explain exactly what changed and wait for explicit approval before making the edit live in any way.
 8. After completing an approved edit, you may commit it, push the session branch, and open a pull request against `main` without requesting additional approval for those steps.
 9. Never merge or publish without separate, explicit user approval of the merge itself.
-10. After an approved merge, check the GitHub Pages deployment workflow once — do not repeatedly poll GitHub Actions. If it succeeded, report the merge, provide the live URL, and ask the user to verify the live page. If the cloud environment cannot load `github.io`, say so and ask the user to perform the final visual check; a successful workflow run is not a substitute for that check.
-
-GitHub Pages does not provide a shareable preview URL for each pull request in this repository. Use a diff for text-only changes and screenshots for visual changes as the review artifact before merging.
-
-## Known validation warnings
-
-Until the launch checklist is completed, validation may report known warnings involving the Terms/Privacy destinations, the hero phrase “backing and amplify,” and Nicole's biography. Treat these as pre-existing launch items rather than blockers to unrelated edits. Do not fix them unless the user explicitly asks.
+10. After an approved merge, check the GitHub Pages deployment workflow once—do not repeatedly poll GitHub Actions. If it succeeded, report the merge, provide <https://connectventures.com/>, and ask the user to verify the live page. If the cloud environment cannot load the public site, say so and ask the user to perform the final visual check; a successful workflow run is not a substitute for that check.
 
 ## Guardrails
 
