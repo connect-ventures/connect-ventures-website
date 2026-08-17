@@ -4,15 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Connect Ventures | Consumer Venture Capital</title>
-  <meta name="description" content="Connect Ventures backs exceptional consumer and prosumer founders building companies at the intersection of culture, commerce, and technology.">
+  <meta name="description" content="Connect Ventures is an early-stage venture capital firm investing at the intersection of consumer and culture. In partnership with Creative Artists Agency (CAA), we connect and amplify bold founders.">
   <link rel="canonical" href="https://www.connectventures.com/">
+
+  <!-- OpenGraph Metadata -->
+  <meta property="og:title" content="Connect Ventures">
+  <meta property="og:description" content="Connect Ventures is an early-stage venture capital firm investing at the intersection of consumer and culture. In partnership with Creative Artists Agency (CAA), we connect and amplify bold founders.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Connect Ventures | Consumer Venture Capital">
-  <meta property="og:description" content="Backing exceptional consumer and prosumer founders building the generational companies of tomorrow.">
   <meta property="og:url" content="https://www.connectventures.com/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Connect Ventures | Consumer Venture Capital">
-  <meta name="twitter:description" content="Backing exceptional consumer and prosumer founders building the generational companies of tomorrow.">
+  <meta property="og:image" content="https://www.connectventures.com/assets/images/connectventures-social.jpeg">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Connect Ventures">
+  <meta name="twitter:description" content="Connect Ventures is an early-stage venture capital firm investing at the intersection of consumer and culture.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,700;0,800;1,700&family=Barlow+Condensed:ital,wght@0,800;1,700&display=swap" rel="stylesheet">
@@ -24,8 +33,59 @@
       --gold-muted: rgba(201,162,39,0.30);
       --text:       #FFFFFF;
       --text-sec:   rgba(255,255,255,0.70);
-      --text-muted: rgba(255,255,255,0.38);
+      --text-muted: rgba(255,255,255,0.55); /* Increased contrast for WCAG AA compliance */
     }
+
+    /* ─── Mobile Navigation Menu ─── */
+    #mobile-menu-trigger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 24px; height: 16px;
+      background: transparent; border: none;
+      padding: 0; cursor: pointer;
+      z-index: 101;
+      position: absolute; right: 0;
+    }
+    #mobile-menu-trigger span {
+      width: 100%; height: 2px;
+      background-color: var(--gold);
+      transition: all 0.3s ease;
+    }
+    #mobile-menu-drawer {
+      position: fixed; top: 0; right: -300px;
+      width: 300px; height: 100%;
+      background: #111111; border-left: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 40px 32px; z-index: 201;
+      display: flex; flex-direction: column;
+      transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #mobile-menu-drawer.open { right: 0; }
+    #mobile-menu-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      z-index: 200; opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    #mobile-menu-overlay.open { opacity: 1; pointer-events: auto; }
+    #mobile-menu-close {
+      align-self: flex-end;
+      font-size: 32px; font-weight: 300;
+      color: var(--gold); background: transparent;
+      border: none; cursor: pointer;
+      padding: 0; line-height: 1;
+      margin-bottom: 40px;
+    }
+    .mobile-menu-links {
+      display: flex; flex-direction: column; gap: 28px;
+    }
+    .mobile-menu-link {
+      font-size: 14px; letter-spacing: 0.20em;
+      color: var(--text); text-decoration: none;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .mobile-menu-link:hover { color: var(--gold); }
 
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -40,6 +100,10 @@
     .sr-only {
       position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
       overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--gold); outline-offset: 4px;
     }
 
     body {
@@ -217,10 +281,6 @@
     }
     .footer-link:hover { opacity: 1; color: var(--gold); }
 
-    a:focus-visible, button:focus-visible, input:focus-visible {
-      outline: 2px solid var(--gold); outline-offset: 4px;
-    }
-
     /* ─── Newsletter cards ─── */
     .nl-card:hover { padding-left: 14px !important; }
     .nl-card:hover h3 { color: rgba(255,255,255,0.90); }
@@ -231,9 +291,9 @@
       text-transform: uppercase; margin-top: 14px; line-height: 1.8;
     }
     .team-investments {
-      font-size: 12px; color: var(--text-muted); margin-top: 12px; line-height: 1.7;
+      font-size: 13.5px; color: var(--text); font-weight: 500; margin-top: 12px; line-height: 1.7;
     }
-    .team-investments strong { color: var(--gold); font-weight: 500; letter-spacing: 0.06em; }
+    .team-investments strong { color: var(--gold); font-weight: 700; letter-spacing: 0.06em; }
     .team-quote {
       font-size: 12px; font-style: italic; color: var(--text-muted);
       margin-top: 12px; line-height: 1.65; border-left: 1px solid var(--gold-muted);
@@ -245,6 +305,7 @@
       .container { padding: 0 28px; }
       #main-nav  { padding: 22px 28px; }
       .nav-links { display: none; }
+      #mobile-menu-trigger { display: flex; }
       .about-grid  { grid-template-columns: 1fr !important; gap: 48px !important; }
       .port-grid   { flex-wrap: wrap !important; }
       .team-grid-2 { grid-template-columns: 1fr !important; }
@@ -276,19 +337,35 @@
         <a href="#about"     class="nav-link">ABOUT</a>
         <a href="#portfolio" class="nav-link">PORTFOLIO</a>
       </div>
-      <a href="#top" class="nav-logo-wrap" aria-label="Connect Ventures home">
-        <div class="nav-logo">CONNECT</div>
-        <div class="nav-logo-sub">VENTURES</div>
+      <a href="#top" class="nav-logo-wrap" aria-label="Connect Ventures home" style="display:flex; align-items:center; justify-content:center;">
+        <img src="assets/logos/connect-ventures-white.png" alt="Connect Ventures" style="height:32px; width:auto; display:block;">
       </a>
       <div class="nav-links">
         <a href="#team" class="nav-link">TEAM</a>
         <a href="https://connectventures.beehiiv.com/" target="_blank" rel="noopener noreferrer" class="nav-link">NEWSLETTER</a>
       </div>
+      <button id="mobile-menu-trigger" aria-label="Open navigation menu" aria-controls="mobile-menu-drawer" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
 
-  <main id="main-content">
+  <!-- Mobile Navigation Drawer Overlay -->
+  <div id="mobile-menu-overlay" aria-hidden="true"></div>
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobile-menu-drawer" aria-hidden="true">
+    <button id="mobile-menu-close" aria-label="Close Navigation Menu">&times;</button>
+    <div class="mobile-menu-links">
+      <a href="#about" class="mobile-menu-link">ABOUT</a>
+      <a href="#portfolio" class="mobile-menu-link">PORTFOLIO</a>
+      <a href="#team" class="mobile-menu-link">TEAM</a>
+      <a href="https://connectventures.beehiiv.com/" target="_blank" rel="noopener noreferrer" class="mobile-menu-link">NEWSLETTER</a>
+    </div>
+  </div>
 
+  <main id="main-content">
 
   <!-- ═══════════════ HERO ═══════════════ -->
   <section style="padding: 104px 0 88px; text-align: center;">
@@ -296,11 +373,11 @@
       <div class="label" style="margin-bottom: 30px;">[ CONNECT VENTURES ]</div>
       <h1 style="font-size: clamp(38px, 5.5vw, 62px); font-weight: 800; line-height: 1.08;
                  letter-spacing: -0.01em; margin: 0 0 30px;">
-        Culture doesn't just<br>influence the world.<br>It connects us.
+        Culture doesn’t just<br>influence the world.<br>It connects us.
       </h1>
       <p style="font-size: 18px; font-weight: 300; color: var(--text-sec);
                 line-height: 1.68; max-width: 540px; margin: 0 auto;">
-        We are the VC fund backing and amplify those bold founders driving our future.
+        We are the VC fund backing and amplifying those bold founders driving our future.
       </p>
     </div>
   </section>
@@ -319,10 +396,10 @@
             Connect Ventures is founded on the idea that great companies are built by connecting the right founders with the right platforms, people, and pathways to scale. And by helping those companies earn a durable place in daily life.
           </p>
           <p style="font-size:16px; font-weight:300; color:var(--text-sec); line-height:1.72; margin:0 0 22px;">
-            We invest in consumer and prosumer companies across sports, digital health, media, entertainment, e-commerce, and marketplaces, categories where connection isn't a nice-to-have, it's the strategy.
+            We invest in consumer and prosumer companies across sports, digital health, media, entertainment, e-commerce, and marketplaces, categories where connection isn’t a nice-to-have, it’s the strategy.
           </p>
           <p style="font-size:16px; font-weight:300; color:var(--text-sec); line-height:1.72; margin:0;">
-            We have partnered with the leading entertainment and sports agency Creative Artists Agency (CAA) to connect and plug founders directly into CAA's ecosystem including 1,000+ agents, talent, media, IP, partnerships, sponsorships. Things traditional venture networks simply can't unlock. We seek to help companies accelerate and achieve breakout velocity.
+            We have partnered with the leading entertainment and sports agency Creative Artists Agency (CAA) to connect and plug founders directly into CAA’s ecosystem of 1,000+ agents, talent, media, IP, partnerships, and sponsorships. Things traditional venture networks simply can’t unlock. We seek to help companies accelerate and achieve breakout velocity.
           </p>
         </div>
 
@@ -333,22 +410,22 @@
             <a href="https://www.caa.com/" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
               <div style="background:#FFFFFF; border-radius:3px; padding:10px 22px;
                           display:inline-flex; align-items:center; justify-content:center;">
-                <img src="assets/logos/caa.png" alt="CAA" loading="lazy" decoding="async" style="height:32px; object-fit:contain; display:block; filter:brightness(0);">
+                <img src="assets/logos/caa.webp" alt="CAA" loading="lazy" decoding="async" style="height:32px; object-fit:contain; display:block; filter:brightness(0);">
               </div>
             </a>
           </div>
           <div style="display:flex; flex-direction:column; gap:20px;">
             <div style="display:flex; gap:18px; align-items:center;">
               <div class="gold-bar" style="height:40px;"></div>
-              <p style="font-size:16px; font-weight:600; margin:0; line-height:1.4;">Consumer obsessed. Culture forward. Tech powered. Founder driven.</p>
+              <p style="font-size:16px; font-weight:400; margin:0; line-height:1.4;">Consumer obsessed. Culture forward. Tech powered. Founder driven.</p>
             </div>
             <div style="display:flex; gap:18px; align-items:center;">
               <div class="gold-bar" style="height:24px;"></div>
-              <p style="font-size:16px; font-weight:300; color:var(--text-sec); margin:0;">We don't just invest. We connect and amplify.</p>
+              <p style="font-size:16px; font-weight:400; margin:0; line-height:1.4;">We don’t just invest. We connect and amplify.</p>
             </div>
             <div style="display:flex; gap:18px; align-items:center;">
               <div class="gold-bar" style="height:24px;"></div>
-              <p style="font-size:16px; font-weight:300; color:var(--text-sec); margin:0;">Investing in next wave entrepreneurs.</p>
+              <p style="font-size:16px; font-weight:400; margin:0; line-height:1.4;">Investing in next wave entrepreneurs.</p>
             </div>
           </div>
         </div>
@@ -365,10 +442,10 @@
     <div class="container" style="max-width:740px;">
       <div class="label" style="margin-bottom:28px;">[ THESIS ]</div>
       <h2 style="font-size:clamp(30px,4.5vw,48px); font-weight:800; line-height:1.1; margin:0 0 28px;">
-        Spotting 'The Greats.'
+        Spotting ‘The Greats’
       </h2>
       <p style="font-size:17px; font-weight:300; color:var(--text-sec); line-height:1.72; max-width:600px; margin:0 auto 44px;">
-        At Connect Ventures, we aim to invest in 'the greats.' Exceptional founders who have found their 'founder-product fit' and are now rewriting how consumers engage with culture and are building the generational companies of tomorrow.
+        At Connect Ventures, we aim to invest in 'The Greats.' Exceptional founders who have found their founder-product fit and are now rewriting how consumers engage with culture and are building the generational companies of tomorrow.
       </p>
       <div style="text-align:left; display:inline-block; max-width:500px; width:100%;">
         <p style="font-size:16px; font-weight:300; color:var(--text-sec); margin:0 0 20px; line-height:1.5;">This is how we think about investing.</p>
@@ -402,14 +479,14 @@
         <a href="https://tmrwsportsgroup.com/" target="_blank" rel="noopener noreferrer" class="port-card"
            style="width:420px; text-decoration:none; color:inherit;">
           <div class="card-photo" style="height:280px;">
-            <img src="assets/images/tmrw-sports-founders.jpg" alt="TMRW Sports founders" loading="lazy" decoding="async"
+            <img src="assets/images/tmrw-sports-founders-new.webp" alt="TMRW Sports founders" loading="lazy" decoding="async"
                  style="object-position: center top;">
             <span class="card-num">[ 01 ]</span>
-            <span class="card-plus">+</span>
+            <span class="card-plus" aria-hidden="true">+</span>
           </div>
           <div class="card-info">
             <div style="margin-bottom:12px; height:32px; display:flex; align-items:center;">
-              <img src="assets/logos/tmrw-sports.webp" alt="TMRW Sports" loading="lazy" decoding="async"
+              <img src="assets/logos/tmrw-sports-new.webp" alt="TMRW Sports" loading="lazy" decoding="async"
                    style="height:28px; max-width:200px; object-fit:contain; display:block;">
             </div>
             <p style="font-size:14px; color:var(--text-sec); margin:0 0 12px; line-height:1.5;">
@@ -426,22 +503,22 @@
         <a href="https://moises.ai/" target="_blank" rel="noopener noreferrer" class="port-card"
            style="width:310px; text-decoration:none; color:inherit;">
           <div class="card-photo" style="height:280px;">
-            <img src="assets/images/moises-founders.jpg" alt="Moises founders" loading="lazy" decoding="async"
+            <img src="assets/images/moises-founders-new.webp" alt="Moises founders" loading="lazy" decoding="async"
                  style="object-position: center top;">
             <span class="card-num">[ 02 ]</span>
-            <span class="card-plus">+</span>
+            <span class="card-plus" aria-hidden="true">+</span>
           </div>
           <div class="card-info">
             <div style="margin-bottom:12px; height:32px; display:flex; align-items:center;">
-              <img src="assets/logos/moises.png" alt="Moises" loading="lazy" decoding="async"
+              <img src="assets/logos/moises.webp" alt="Moises" loading="lazy" decoding="async"
                    style="height:28px; max-width:200px; object-fit:contain; display:block;">
             </div>
             <p style="font-size:14px; color:var(--text-sec); margin:0 0 12px; line-height:1.5;">
-              The Creative Suite for Musicians.
+              The essential toolkit for musicians to practice, perform, create and collaborate.
             </p>
             <div style="display:flex; gap:7px; flex-wrap:wrap;">
               <span class="card-tag">CONSUMER AI</span>
-              <span class="card-tag">MEDIA</span>
+              <span class="card-tag">MEDIA &amp; ENTERTAINMENT</span>
             </div>
           </div>
         </a>
@@ -450,14 +527,14 @@
         <a href="https://sekaiapp.com/" target="_blank" rel="noopener noreferrer" class="port-card"
            style="width:360px; text-decoration:none; color:inherit;">
           <div class="card-photo" style="height:280px;">
-            <img src="assets/images/lucky-zhang.jpg" alt="Sekai founder" loading="lazy" decoding="async"
+            <img src="assets/images/lucky-zhang.webp" alt="Sekai founder" loading="lazy" decoding="async"
                  style="object-position: center top;">
             <span class="card-num">[ 03 ]</span>
-            <span class="card-plus">+</span>
+            <span class="card-plus" aria-hidden="true">+</span>
           </div>
           <div class="card-info">
             <div style="margin-bottom:12px; height:32px; display:flex; align-items:center;">
-              <img src="assets/logos/sekai.png" alt="Sekai" loading="lazy" decoding="async"
+              <img src="assets/logos/sekai.webp" alt="Sekai" loading="lazy" decoding="async"
                    style="height:28px; max-width:200px; object-fit:contain; display:block;">
             </div>
             <p style="font-size:14px; color:var(--text-sec); margin:0 0 12px; line-height:1.5;">
@@ -466,6 +543,7 @@
             <div style="display:flex; gap:7px; flex-wrap:wrap;">
               <span class="card-tag">CONSUMER AI</span>
               <span class="card-tag">GAMING</span>
+              <span class="card-tag">MARKETPLACES</span>
             </div>
           </div>
         </a>
@@ -488,11 +566,23 @@
             Journey into the minds of those at the pinnacle of their fields.
           </h2>
           <p style="font-size:17px; font-weight:300; color:var(--text-sec); line-height:1.70; margin:0 0 36px; max-width:560px;">
-            The Greats is a newsletter of thought pieces, portfolio company updates and interviews of the very best in their business.
+            The Greats is a newsletter of thought pieces, portfolio company updates, and interviews with the very best in their business.
           </p>
 
           <!-- Newsletter list — press/blog cards -->
           <div id="newsletter-list" style="margin-bottom:44px; border-top:1px solid rgba(255,255,255,0.12);">
+
+            <a href="https://connectventures.beehiiv.com/p/the-greats-jeremy-liew-vc"
+               target="_blank" rel="noopener noreferrer" class="nl-card"
+               style="display:block; padding:26px 0; border-bottom:1px solid rgba(255,255,255,0.10);
+                      text-decoration:none; transition:padding-left 0.2s;">
+              <div style="font-size:9.5px; letter-spacing:0.24em; color:var(--gold); font-weight:500; margin-bottom:10px;">NEWSLETTER #03</div>
+              <h3 style="font-size:clamp(15px,2vw,20px); font-weight:700; line-height:1.35;
+                         margin:0 0 14px; color:var(--text); max-width:680px;">
+                The Unbiased Data on Why Consumer and Why Now? + Top 20 Midas Investor Jeremy Liew on the 4 Things to Look for in a Consumer Deal
+              </h3>
+              <span style="font-size:10.5px; letter-spacing:0.18em; color:var(--gold); font-weight:500;">READ THE ISSUE →</span>
+            </a>
 
             <a href="https://connectventures.beehiiv.com/p/the-greats-bryan-lourd-jim-burtson-caa"
                target="_blank" rel="noopener noreferrer" class="nl-card"
@@ -522,12 +612,12 @@
 
           <!-- Subscribe form -->
           <div id="subscribe-wrap">
-            <button class="cta-btn" id="subscribe-btn" type="button">Subscribe</button>
+            <button class="cta-btn" id="subscribe-btn">Subscribe</button>
             <form id="subscribe-form" style="display:none; margin-top:16px;"
                   onsubmit="handleSubscribe(event)">
               <div style="display:flex;">
-                <label class="sr-only" for="sub-email">Email address</label>
-                <input type="email" id="sub-email" name="email" autocomplete="email" required placeholder="your@email.com">
+                <label for="sub-email" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Email Address</label>
+                <input type="email" id="sub-email" required placeholder="your@email.com">
                 <button type="submit">SUBSCRIBE →</button>
               </div>
               <p style="font-size:11px; color:var(--text-muted); margin:10px 0 0; letter-spacing:0.04em;">
@@ -552,7 +642,7 @@
 
       <!-- Intro -->
       <p style="font-size:17px; font-weight:300; color:var(--text-sec); line-height:1.72; max-width:720px; margin:0 0 64px;">
-        Between Mike and Nicole, we've spent over a quarter of a century in venture incubating Lady Gaga's Haus Labs, backing Calm, Character&nbsp;AI, Dapper&nbsp;Labs, Hungryroot, Lighter, Lightyear, Multiverse, OpenSea, Rothy's, thatgamecompany, and other unicorns.
+        Between Mike and Nicole, we’ve spent over a quarter of a century in venture, incubating Lady Gaga’s Haus Labs, backing Calm, Character AI, Dapper Labs, Hungryroot, Lighter, Lightyear, Multiverse, OpenSea, Rothy’s, thatgamecompany, and other unicorns.
       </p>
 
       <!-- Partners (2-col) -->
@@ -564,13 +654,13 @@
         <div>
           <div style="width:170px; margin:0 auto 18px;">
             <div class="team-photo-wrap" role="img" aria-label="Portrait of Nicole Quinn"
-                 style="background-image: url('assets/images/nicole-quinn.jpg');">
+                 style="background-image: url('assets/images/nicole-quinn.webp');">
             </div>
           </div>
           <div class="team-name">Nicole Quinn</div>
           <div class="team-role">Co-Founder &amp; Managing Partner</div>
-          <p class="team-bio">Nicole spent over a decade at Lightspeed Venture Partners, where she co-lead the Consumer team and investing in companies shaping how people live, shop, and connect. She got her training in research at Morgan Stanley, spending a decade advising internet and retail companies through periods of rapid growth. Nicole began her career helping her late father build online pharmaceutical marketplaces in the '90s, angel investing in the '00s, and starting her own startup in the '10s. She holds an MBA from Stanford and a degree in Mathematics and Economics from the University of York.</p>
-          <div class="team-investments"><strong>Key investments:</strong> beehiiv, Calm, Character AI, Haus Labs, Hungryroot, Lighter, Multiverse, Rothy's</div>
+          <p class="team-bio">Nicole spent over a decade at Lightspeed Venture Partners, where she co-led the Consumer team, investing in companies shaping how people live, shop, and connect. She got her training in research at Morgan Stanley, spending a decade advising internet and retail companies through periods of rapid growth. Nicole began her career helping her late father build online pharmaceutical marketplaces in the ‘90s, angel investing in the ‘00s, and starting her own startup in the ‘10s. She holds an MBA from Stanford and a degree in Mathematics and Economics from the University of York.</p>
+          <div class="team-investments"><strong>Key investments:</strong> beehiiv, Calm, Character AI, Haus Labs, Hungryroot, Lighter, Multiverse, Rothy’s</div>
           <div class="team-meta">Sport: Sprinting<br>Pop Culture Obsession: Your Friends and Neighbors (really anything with Jon Hamm)</div>
           <p class="team-quote">"We have two ears and one mouth so that we can listen twice as much as we speak." — Epictetus</p>
         </div>
@@ -578,35 +668,34 @@
         <!-- Michael Blank -->
         <div>
           <div style="width:170px; margin:0 auto 18px;">
-            <div class="team-photo-wrap" role="img" aria-label="Portrait of Michael Blank"
-                 style="background-image: url('assets/images/michael-blank.jpg');">
+            <div class="team-photo-wrap" role="img" aria-label="Portrait of Mike Blank"
+                 style="background-image: url('assets/images/mike-blank.webp');">
             </div>
           </div>
-          <div class="team-name">Michael Blank</div>
+          <div class="team-name">Mike Blank</div>
           <div class="team-role">Co-Founder &amp; Managing Partner</div>
-          <p class="team-bio">Mike spent 15 years at CAA, where he built and led the agency's consumer investment practice and helped launch Connect Ventures in partnership with NEA. Michael ran the agency's mobile division, spearheading all apps and games for clients and Caravan, a startup studio where he served as Co-Founder and Board Director. Earlier in his career, he worked at Bridgewater Associates, where he developed a systems-driven approach to investing and decision-making. Blank recently co-authored Decoy Saves Opening Day, a children's book with MLB MVP Shohei Ohtani. He graduated with honors from Yale University with a degree in Economics.</p>
-          <div class="team-investments"><strong>Key investments:</strong> Dapper Labs, Giphy, Haus Labs, Patreon, Performance Drone Works, thatgamecompany, Theta Labs</div>
-          <div class="team-meta">Sport: Baseball<br>Pop Culture Obsession: Pokémon</div>
-          <p class="team-quote">"The best way to predict the future is to create it." — Peter Drucker</p>
+          <p class="team-bio">Mike spent 15 years at CAA, where he built and led the agency’s consumer investment practice and helped launch Connect Ventures in partnership with NEA. Mike ran the agency’s mobile division, spearheading all apps and games for clients and Caravan, a startup studio where he served as Co-Founder and Board Director. Earlier in his career, he worked at Bridgewater Associates, where he developed a systems-driven approach to investing and decision-making. Blank recently co-authored Decoy Saves Opening Day, a NYT Bestselling children’s book with MLB MVP Shohei Ohtani. He graduated with honors from Yale University with a degree in Economics.</p>
+          <div class="team-investments"><strong>Key investments:</strong> Dapper Labs, Giphy, Music.AI/Moises, Patreon, Performance Drone Works, thatgamecompany, Theta Labs, TMRW Sports</div>
+          <div class="team-meta">Sport: Baseball<br>Pop Culture Obsession: Lego building and tracking down Pokémon on family walks</div>
+          <p class="team-quote">“Remember these two things: play hard and have fun” - Tony Gwynn</p>
         </div>
 
       </div>
 
-      <!-- Investors & Venture Partners (3-col) -->
-      <!-- Photo: 170px centered. Each person's zoom tuned to match apparent head size. -->
-      <div class="team-grid-3"
-           style="display:grid; grid-template-columns:repeat(3,1fr); gap:44px; margin-bottom:56px;">
+      <!-- Team Grid (2-col) -->
+      <div class="team-grid-2"
+           style="display:grid; grid-template-columns:repeat(2,1fr); gap:56px;">
 
         <!-- Adam Friedman — tight professional headshot -->
         <div>
           <div style="width:170px; margin:0 auto 18px;">
             <div class="team-photo-wrap" role="img" aria-label="Portrait of Adam Friedman"
-                 style="background-image: url('assets/images/adam-friedman.jpg');">
+                 style="background-image: url('assets/images/adam-friedman.webp');">
             </div>
           </div>
           <div class="team-name">Adam Friedman</div>
           <div class="team-role">Venture Partner</div>
-          <p class="team-bio">Adam has spent his career at CAA and serves as the day-to-day lead for the agency at the fund, while also serving in a senior business development role across the agency. He works with the agency's most entrepreneurial clients to identify new business opportunities across the consumer, media and technology landscape. He has led the agency's entree in new areas of business over the years, such as talent ventures and emerging technology. He started out at The Madison Square Garden Company, was named to Forbes' 30 Under 30 list, and The Hollywood Reporter's 35 Rising Executives 35 and Under. Adam graduated from the University of Pennsylvania and is a member of UPenn's Benjamin Franklin Society.</p>
+          <p class="team-bio">Adam has spent his career at CAA and serves as the day-to-day lead for the agency at the fund, while also serving in a senior business development role across the agency. He works with the agency’s most entrepreneurial clients to identify new business opportunities across the consumer, media and technology landscape. He has led the agency’s entry into new areas of business over the years, such as talent ventures and emerging technology. He started out at The Madison Square Garden Company, was named to Forbes’ 30 Under 30 list, and The Hollywood Reporter’s 35 Rising Executives 35 and Under. Adam graduated from the University of Pennsylvania and is a member of UPenn’s Benjamin Franklin Society.</p>
           <div class="team-meta">Sport: Golf<br>Pop Culture Obsession: Law &amp; Order</div>
           <p class="team-quote">What Would Larry David Do?</p>
         </div>
@@ -615,66 +704,43 @@
         <div>
           <div style="width:170px; margin:0 auto 18px;">
             <div class="team-photo-wrap" role="img" aria-label="Portrait of Alexa Binns"
-                 style="background-image: url('assets/images/alexa-binns.jpg');">
+                 style="background-image: url('assets/images/alexa-binns.webp');">
             </div>
           </div>
           <div class="team-name">Alexa Binns</div>
-          <div class="team-role">Partner</div>
-          <p class="team-bio">Alexa was previously a Partner at Halogen Ventures and Maven Ventures, two seed-stage consumer funds, leading media, health and ecommerce investments. Before venture, she built digital and physical products for the NBA, Target, Walgreens, MTV, Fox, and Disney. She is the co-host of the weekly venture podcast Swimming with Allocators. Alexa graduated Phi Beta Kappa from Stanford and earned her MBA in Entertainment from UCLA Anderson.</p>
+          <div class="team-role">Venture Partner</div>
+          <p class="team-bio">Alexa was previously an investor at Halogen Ventures and Maven Ventures, two seed-stage consumer funds, leading media, health and ecommerce investments. Before venture, she built digital and physical products for the NBA, Target, Walgreens, MTV, Fox and Disney. She is the co-host of the weekly venture podcast Swimming with Allocators. Alexa graduated Phi Beta Kappa from Stanford and earned her MBA in Entertainment from UCLA Anderson.</p>
           <div class="team-meta">Sport: Sailing<br>Pop Culture Obsession: Antiques Roadshow</div>
-          <p class="team-quote">'Clueless was very deep. I think it was deep in the way that it was very light. I think lightness has to come from a very deep place if it's true lightness.' — Alicia Silverstone</p>
+          <p class="team-quote">“Clueless was very deep. I think it was deep in the way that it was very light. I think lightness has to come from a very deep place if it's true lightness.” -- Alicia Silverstone</p>
         </div>
 
         <!-- James Manriquez — tight professional headshot -->
         <div>
           <div style="width:170px; margin:0 auto 18px;">
             <div class="team-photo-wrap" role="img" aria-label="Portrait of James Manriquez"
-                 style="background-image: url('assets/images/james-manriquez.jpg');">
+                 style="background-image: url('assets/images/james-manriquez.webp');">
             </div>
           </div>
           <div class="team-name">James Manriquez</div>
           <div class="team-role">Investor</div>
-          <p class="team-bio">James brings an operator's perspective to investing, shaped by experiences across sports, consumer brands, and growth-stage companies. Before Connect, he worked in consumer investment banking at Barclays, served as Chief of Staff to the CEO of the Premier Lacrosse League, and held strategy roles at Fanatics and the Oakland Athletics. He earned degrees from UC Berkeley and the University of Michigan, including an MBA from Ross School of Business.</p>
-          <div class="team-meta">Sport: College Football<br>Pop Culture Obsession: Zillow</div>
-          <p class="team-quote">"If anything goes bad, I did it. If anything goes semi-good, we did it. If anything goes really good, then you did it." — Bear Bryant</p>
-        </div>
-
-      </div>
-
-      <!-- Additional team — same 3-col grid; Elin/Jessica under Adam/Alexa -->
-      <div class="team-grid-3"
-           style="display:grid; grid-template-columns:repeat(3,1fr); gap:44px;">
-
-        <!-- Elin Barseghian — outdoor B&W square photo; face ~25% of image, zoom to match -->
-        <div>
-          <div style="width:170px; margin:0 auto 18px;">
-            <div class="team-photo-wrap" role="img" aria-label="Portrait of Elin Barseghian"
-                 style="background-image: url('assets/images/elin-barseghian.jpg');">
-            </div>
-          </div>
-          <div class="team-name">Elin Barseghian</div>
-          <div class="team-role">Executive Assistant</div>
-          <p class="team-bio">Elin supports the Connect Ventures GPs across operations and day-to-day execution. Previously Elin worked in the office of the CAO/CLO at CAA and is a valuable resource for connecting the firm with our partners at CAA.</p>
-          <div class="team-meta">Sport: Tennis<br>Pop Culture Obsession: Love Island</div>
-          <p class="team-quote">"Think well, live well." — My grandfather</p>
+          <p class="team-bio">James brings an operator’s perspective to investing, shaped by experiences across sports, consumer brands, and growth-stage companies. Before Connect, he worked in consumer investment banking at Barclays, served as Chief of Staff to the CEO of the Premier Lacrosse League, and held strategy roles at Fanatics and the Oakland Athletics. He earned degrees from UC Berkeley and the University of Michigan, including an MBA from Ross School of Business.</p>
+          <div class="team-meta">Sport: College Football<br>Pop Culture Obsession: Streetwear</div>
+          <p class="team-quote">“The cowards never started and the weak died along the way. That leaves us.” -- Phil Knight</p>
         </div>
 
         <!-- Jessica Mullins Camburn — tight square headshot -->
         <div>
           <div style="width:170px; margin:0 auto 18px;">
             <div class="team-photo-wrap" role="img" aria-label="Portrait of Jessica Mullins Camburn"
-                 style="background-image: url('assets/images/jessica-mullins-camburn.jpg');">
+                 style="background-image: url('assets/images/jessica-mullins-camburn.webp');">
             </div>
           </div>
           <div class="team-name">Jessica Mullins Camburn</div>
-          <div class="team-role">Controller</div>
-          <p class="team-bio">Jessica oversees finance at Connect Ventures, bringing over 20 years of experience in venture capital finance and partnership taxation, including a decade at NEA. She ensures strong financial infrastructure, reporting, and operational discipline across the organization.</p>
+          <div class="team-role">Chief Financial Officer</div>
+          <p class="team-bio">Jessica oversees finance at Connect Ventures, bringing over 20 years of experience in venture capital finance and partnership taxation, including a decade at NEA. She ensures strong financial infrastructure, reporting, and operational discipline across the organization. Jessica graduated Summa Cum Laude from Towson University and received her MBA from Loyola University of Maryland.</p>
           <div class="team-meta">Sport: Baseball<br>Pop Culture Obsession: Funny Instagram Reels</div>
-          <p class="team-quote">"Have a place for everything and keep everything in its place." — My mom or "Eat dessert first, it's an appetite suppressant." — My mom</p>
+          <p class="team-quote">“Eat dessert first, it’s an appetite suppressant.” - My mom</p>
         </div>
-
-        <!-- Third column intentionally empty -->
-        <div></div>
 
       </div>
 
@@ -684,7 +750,6 @@
   <div class="divider-wrap"><div class="line-outer" style="height:200px;"><div class="line-track"></div><div class="line-shimmer"></div></div></div>
 
   </main>
-
 
   <!-- ═══════════════ FOOTER ═══════════════ -->
   <footer style="background:var(--bg-footer); padding:44px 48px 32px;">
@@ -696,13 +761,12 @@
           <a href="https://x.com/ConnectVentures" target="_blank" rel="noopener noreferrer" class="footer-link">TWITTER</a>
           <a href="https://www.linkedin.com/company/connectventures/" target="_blank" rel="noopener noreferrer" class="footer-link">LINKEDIN</a>
         </div>
-        <a href="#top" aria-label="Connect Ventures home" style="text-decoration:none; color:var(--text); text-align:center;">
-          <div class="footer-logo">CONNECT</div>
-          <div class="footer-logo-sub">VENTURES®</div>
+        <a href="#top" aria-label="Connect Ventures home" style="text-decoration:none; display:inline-block;">
+          <img src="assets/logos/connect-ventures-white.png" alt="Connect Ventures" style="height:32px; width:auto; display:block; margin:0 auto;">
         </a>
         <div style="display:flex; gap:28px;">
-          <a href="#" class="footer-link">TERMS &amp; CONDITIONS</a>
-          <a href="#" class="footer-link">PRIVACY POLICY</a>
+          <a href="terms.html" class="footer-link">TERMS &amp; CONDITIONS</a>
+          <a href="privacy.html" class="footer-link">PRIVACY POLICY</a>
         </div>
       </div>
       <div style="border-top:1px solid rgba(255,255,255,0.07); padding-top:20px; text-align:center;">
@@ -740,6 +804,32 @@
       nav.classList.toggle('scrolled', window.scrollY > 50);
     }, { passive: true });
 
+    // ── Mobile Menu Functionality ──
+    const trigger = document.getElementById('mobile-menu-trigger');
+    const drawer = document.getElementById('mobile-menu-drawer');
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const drawerLinks = document.querySelectorAll('.mobile-menu-link');
+
+    function toggleMenu(open) {
+      drawer.classList.toggle('open', open);
+      overlay.classList.toggle('open', open);
+      trigger.setAttribute('aria-expanded', String(open));
+      drawer.setAttribute('aria-hidden', String(!open));
+      document.body.style.overflow = open ? 'hidden' : '';
+      if (!open) trigger.focus();
+    }
+
+    trigger.addEventListener('click', () => toggleMenu(true));
+    closeBtn.addEventListener('click', () => toggleMenu(false));
+    overlay.addEventListener('click', () => toggleMenu(false));
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', () => toggleMenu(false));
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && drawer.classList.contains('open')) toggleMenu(false);
+    });
+
     // ── Subscribe form toggle ──
     document.getElementById('subscribe-btn').addEventListener('click', () => {
       document.getElementById('subscribe-btn').style.display = 'none';
@@ -754,13 +844,10 @@
     }
 
     // ── Auto-feed from Beehiiv RSS ──
-    // Fetches the latest newsletters and prepends any newer than the two hardcoded ones.
-    // Falls back to hardcoded content if the fetch fails.
+    // Fetches the latest newsletters and renders them dynamically.
+    // Falls back to hardcoded HTML content if the fetch fails.
     (async function loadNewsletters() {
-      const KNOWN_SLUGS = [
-        'the-greats-bryan-lourd-jim-burtson-caa',
-        'we-ve-been-quietly-building-something-with-caa'
-      ];
+      const container = document.getElementById('newsletter-list');
       try {
         const res = await fetch(
           'https://api.rss2json.com/v1/api.json?rss_url=' +
@@ -771,33 +858,19 @@
         const data = await res.json();
         if (data.status !== 'ok' || !data.items?.length) return;
 
-        // Find items not already hardcoded
-        const newItems = data.items.filter(item => {
-          try {
-            const url = new URL(item.link);
-            return url.protocol === 'https:' &&
-              url.hostname === 'connectventures.beehiiv.com' &&
-              !KNOWN_SLUGS.some(slug => url.pathname.includes(slug));
-          } catch (_) {
-            return false;
-          }
-        });
-        if (!newItems.length) return;
+        // Clear the hardcoded fallback newsletters
+        container.innerHTML = '';
 
-        // Count existing issues to number new ones correctly
-        const container = document.getElementById('newsletter-list');
-        const existingCount = container.querySelectorAll('.nl-card').length;
-
-        // Prepend new newsletter cards above the hardcoded two
-        newItems.reverse().forEach((item, i) => {
-          const num = String(existingCount + newItems.length - i).padStart(2, '0');
+        // Render the latest newsletters from the feed (max 5)
+        const itemsToRender = data.items.slice(0, 5);
+        itemsToRender.forEach((item, index) => {
+          const num = String(data.items.length - index).padStart(2, '0');
           const a = document.createElement('a');
           a.href = item.link;
           a.target = '_blank';
           a.rel = 'noopener noreferrer';
           a.className = 'nl-card';
           a.style.cssText = 'display:block; padding:26px 0; border-bottom:1px solid rgba(255,255,255,0.10); text-decoration:none; transition:padding-left 0.2s;';
-
           const issueLabel = document.createElement('div');
           issueLabel.style.cssText = 'font-size:9.5px;letter-spacing:0.24em;color:var(--gold);font-weight:500;margin-bottom:10px;';
           issueLabel.textContent = `NEWSLETTER #${num}`;
@@ -811,7 +884,7 @@
           readLink.textContent = 'READ THE ISSUE →';
 
           a.append(issueLabel, title, readLink);
-          container.insertBefore(a, container.firstChild);
+          container.appendChild(a);
         });
       } catch (_) {
         // Silently fall back to hardcoded content
